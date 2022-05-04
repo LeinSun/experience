@@ -11,17 +11,17 @@ import java.util.List;
 /**
  * @author: sunlei
  * @date: 2022/5/4
- * @description:
+ * @description: 将树形结构转换成线性数组结构 和 Linear2Tree 功能相反
  */
 public class Tree2Linear {
     /**
-     * 将返回参数具有层级结构的VO对象转换成数据库对象
+     * 将树形结构转换成线性数组结构
      * @param outputDTOList
      * @param buzOutputList
      * @param parentId
      * @return
      */
-    private List<BuzApiOutput> convertRespToDBObject(List<BuzOutputDTO> outputDTOList, List<BuzApiOutput> buzOutputList, Long parentId){
+    private List<BuzApiOutput> convertLinear2Tree(List<BuzOutputDTO> outputDTOList, List<BuzApiOutput> buzOutputList, Long parentId){
         if (buzOutputList == null){
             buzOutputList = new ArrayList<>();
         }
@@ -36,7 +36,7 @@ public class Tree2Linear {
                 }
                 buzOutput.setParentId(parentId);
                 buzOutputList.add(buzOutput);
-                convertRespToDBObject(buzOutputDTO.getChildren(), buzOutputList, snowId);
+                convertLinear2Tree(buzOutputDTO.getChildren(), buzOutputList, snowId);
             }
             else {
                 BuzApiOutput buzOutput = new BuzApiOutput();
