@@ -1,0 +1,33 @@
+spring:
+  security:
+    oauth2:
+      client:
+        registration:
+          my-client-1:
+            client-id: "abcd"
+            client-secret: "password"
+            client-name: "Client for user scope"
+            provider: "my-oauth-provider"
+            scope: "user"
+            redirect-uri: "https://my-redirect-uri.com"
+            client-authentication-method: "basic"
+            authorization-grant-type: "authorization-code"
+
+          my-client-2:
+            client-id: "abcd"
+            client-secret: "password"
+            client-name: "Client for email scope"
+            provider: "my-oauth-provider"
+            scope: "email"
+            redirect-uri: "https://my-redirect-uri.com"
+            client-authentication-method: "basic"
+            authorization-grant-type: "authorization_code"
+
+        provider:
+          my-oauth-provider:
+            authorization-uri: "https://my-auth-server/oauth/authorize"
+            token-uri: "https://my-auth-server/oauth/token"
+            user-info-uri: "https://my-auth-server/userinfo"
+            user-info-authentication-method: "header"
+            jwk-set-uri: "https://my-auth-server/token_keys"
+            user-name-attribute: "name"
